@@ -30,13 +30,24 @@ RSpec.describe Task, type: :model do
   end
 
   describe '#overdue?' do
+    # it 'should return true if current time is past the deadline' do
+    #   task = Task.new(deadline: "2012-05-30")
+    #   expect(task.overdue?).to eq(true)
+    # end
+
+
+    # it 'should return false if the current time is before the deadline' do
+    #   task = Task.new(deadline: 1.hour.)
+    #   expect(task.overdue?).to eq(false)
+    # end
+    
     it 'should return true if current time is past the deadline' do
-      task = Task.new(deadline: "2012-05-30")
+      task = Task.new(deadline: 1.hour.ago)
       expect(task.overdue?).to eq(true)
     end
 
-    it 'should return false if the current time is before the deadline' do
-      task = Task.new(deadline: "2020-6-14")
+    it 'should return true if current time is past the deadline' do
+      task = Task.new(deadline: 1.hour.from_now)
       expect(task.overdue?).to eq(false)
     end
   end
