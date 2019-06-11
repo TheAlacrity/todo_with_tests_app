@@ -40,7 +40,7 @@ RSpec.describe Task, type: :model do
     #   task = Task.new(deadline: 1.hour.)
     #   expect(task.overdue?).to eq(false)
     # end
-    
+
     it 'should return true if current time is past the deadline' do
       task = Task.new(deadline: 1.hour.ago)
       expect(task.overdue?).to eq(true)
@@ -53,16 +53,34 @@ RSpec.describe Task, type: :model do
   end
 
   describe '#increment_priority!' do
-    it 'should return the value of priority + 1' do
+    it 'should return the value of priority + 1 if the initial priority is < 10' do
       task = Task.new(priority: 2)
       task.increment_priority!
       expect(task.priority).to eq(3)
     end
+
+    it 'should return the value of priority + 1 if the initial priority is < 10' do
+      task = Task.new(priority: 10)
+      task.increment_priority!
+      expect(task.priority).to eq(10)
+    end
   end
 
   describe '#decrement_priority!' do
-    it 'should return the value of priority - 1' do
+    # it 'should return the value of priority - 1' do
+    #   task = Task.new(priority: 2)
+    #   task.decrement_priority!
+    #   expect(task.priority).to eq(1)
+    # end
+
+    it 'should return the value of priority - 1 if the initial priority is > 1' do
       task = Task.new(priority: 2)
+      task.decrement_priority!
+      expect(task.priority).to eq(1)
+    end
+
+    it 'should return the value of priority - 1 if the initial priority is < 10' do
+      task = Task.new(priority: 1)
       task.decrement_priority!
       expect(task.priority).to eq(1)
     end
