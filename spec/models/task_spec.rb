@@ -87,16 +87,24 @@ RSpec.describe Task, type: :model do
   end
 
   describe '#snooze_hour!' do
-    it 'should return the datetime of deadline plus 1 hour' do
-      task = Task.new(deadline: '2020-4-15 23:00')
-      task.snooze_hour!
-      expect(task.deadline).to eq('2020-4-16')
-    end
+    # it 'should return the datetime of deadline plus 1 hour' do
+    #   task = Task.new(deadline: '2020-4-15 23:00')
+    #   task.snooze_hour!
+    #   expect(task.deadline).to eq('2020-4-16')
+    # end
+
+    # it 'should return the datetime of deadline plus 1 hour' do
+    #   task = Task.new(deadline: '2020-4-15 23:10')
+    #   task.snooze_hour!
+    #   expect(task.deadline).to eq('2020-4-16 0:10')
+    # end
 
     it 'should return the datetime of deadline plus 1 hour' do
-      task = Task.new(deadline: '2020-4-15 23:10')
+      time = Time.now
+      task = Task.new(deadline: time)
       task.snooze_hour!
-      expect(task.deadline).to eq('2020-4-16 0:10')
+      expect(task.deadline).to eq(time + 1.hour)
     end
+
   end
 end
