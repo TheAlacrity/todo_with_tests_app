@@ -59,8 +59,8 @@ RSpec.describe List, type: :model do
     it 'should return an array of tasks where favorite is equal to true' do
       list = List.create
       task_1 = Task.create(favorite: true, list_id: list.id)
-      task_2 = Task.create(favorite: true, list_id: list.id)
       task_3 = Task.create(favorite: false, list_id: list.id)
+      task_2 = Task.create(favorite: true, list_id: list.id)
 
       tasks_array = [task_1, task_2]
 
