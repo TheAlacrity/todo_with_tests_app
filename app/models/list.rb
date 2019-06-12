@@ -14,10 +14,10 @@ class List < ApplicationRecord
   end
 
   def incomplete_tasks
-    tasks.reject {|task| task.complete}
+    tasks.where(complete: false)
   end
 
   def favorite_tasks
-    tasks.select {|task| task.favorite}
+    tasks.where(favorite: true)
   end
 end

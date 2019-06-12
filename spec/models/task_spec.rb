@@ -105,6 +105,5 @@ RSpec.describe Task, type: :model do
       task.snooze_hour!
       expect(task.deadline).to eq(time + 1.hour)
     end
-
   end
 end
